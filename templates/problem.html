@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1>Problem "{{ problem_name }}" ({{ problem_port }})</h1>
+    <a href="/">Home</a>
+    <h2>Team Status</h2>
+    <table border="1">
+        <tr>
+            <th>Team Name</th>
+            <th>Running</th>
+            <th>Attacking?</th>
+        </tr>
+        {% for team in teams %}
+            <tr>
+                <td>{{ team.name }}</td>
+                <td>{% if team.latest_patch %}{{ team.latest_patch.binary.link | safe }}{% else %}{% endif %}</td>
+                <td>{% if team.attacking %}Yes ({{ team.attack_time | timesince }}){% else %}No{% endif %}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <h2>Hash Counts</h2>
+    <table border="1">
+        <tr>
+            <th>Count</th>
+            <th>Hash</th>
+        </tr>
+        {% for k, v in hash_counter.items %}
+            <tr>
+                <td>{{ v }}</td>
+                <td>{{ k }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1>Patchouli: patch managing system</h1>
+    <h2>Contest Status</h2>
+    <table border="1">
+        <tr>
+            <th>Problem Name</th>
+            <th>We are running</th>
+            <th>Port</th>
+            <th>Attacking</th>
+        </tr>
+        {% for problem in problems %}
+            <tr>
+                <td><a href="/problem/{{ problem.name }}">{{ problem.name }}</a></td>
+                <td>{{ problem.our_patch.binary.link | safe }}</td>
+                <td>{{ problem.port }}</td>
+                <td>{{ problem.attack_count }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

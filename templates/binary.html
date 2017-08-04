@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1>Binary {{ binary }}</h1>
+    <a href="/">Home</a>
+    <a href="/media/{{ binary.problem.name }}/{{ binary.hash }}.bin">Download</a>
+    <h2>First Author</h2>
+    {{ first_patch.team.name }}
+    <h2>Publicized</h2>
+    {{ first_patch.timestamp | timesince }} ago
+    <h2>Note</h2>
+    {{ first_patch.binary.description | linebreaks }}
+{% endblock %}
